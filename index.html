@@ -1,11 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlfSchool</title>
-</head>
-<body>
-    <h1> AlfSchool website </h1>
-</body>
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <title>Simulator</title>
+    <link rel="stylesheet" href="style.css"></link>
+  </head>
+  <body>
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <canvas id="canvas" tabindex="1"></canvas>
+    <script src="track.js"></script> 
+    <script src="script.js"></script>
+    <script src="simulation.js"></script>
+
+    <button id="exportTrack">Export Track JSON</button>
+    <button id="runSimulation">Run Simulation</button>
+    <button id="undo">Undo</button>
+    <input type="file" id="importTrack" accept=".json" />
+  </body>
 </html>
