@@ -3,6 +3,11 @@ window.addEventListener('load', () => {
     const height = canvas.height;
     const width = canvas.width;
     const ctx = canvas.getContext('2d');
+
+    ctx.globalAlpha = 0.4;
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, width, height);
+    ctx.globalAlpha = 1;
     
     //define your function here
     const func = (x, coefficients) => {
@@ -27,6 +32,10 @@ window.addEventListener('load', () => {
 
 
     function draw(f, coefficients) {
+        ctx.globalAlpha = 0.4;
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, width, height);
+        ctx.globalAlpha = 1;
         ctx.fillStyle = "green";
         ctx.fillRect(0, height/2, width, 2);
         ctx.fillRect(width/2, 0, 2, height);

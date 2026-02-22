@@ -55,6 +55,14 @@ h1 {
     text-shadow: 0 0 10px red;
 }
 
+h6 {
+    color: red;
+    text-decoration: none;
+    display: block;
+    margin-top: 2rem;
+    font: 4rem terminal;
+}
+
 input {
   display: block;
   font: 3rem terminal;

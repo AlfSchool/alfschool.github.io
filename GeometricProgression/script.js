@@ -3,14 +3,18 @@ window.addEventListener('load', ()=> {
     let height = canvas.height;
     let width = canvas.width;
     let ctx = canvas.getContext("2d");
-    clear();
+    
+    ctx.globalAlpha = 0.4;
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, width, height);
+    ctx.globalAlpha = 1;
 
     let turtle = {
         x: 0,
         y: 0,
         angle : 0,
         penDown : false,
-        color : "white",
+        color : "green",
         moveForward(l) {
             ctx.beginPath();
             ctx.strokeStyle = this.color;
@@ -35,14 +39,8 @@ window.addEventListener('load', ()=> {
         }
     }
 
-    point({x: 0, y: 0});
-    point({x: 0, y: height});
-    point({x: width, y: 0});
-    point({x: width, y: height});
-    //point({x: width/2, y: height/2});
-
     let cx = width/2;
-    let cy = height*2/3;
+    let cy = height/1.3;
     turtle.x = cx;
     turtle.y = cy;
     //point({x: cx, y: cy});
@@ -59,7 +57,13 @@ window.addEventListener('load', ()=> {
 
     function drawEdge(n) {
         seq = createSequence(n);
-        seq.forEach(b => b ? turtle.moveForward(3) : turtle.setAngle(turtle.angle + Math.PI / 3));
+        seq.forEach(b => {
+            if (b) {
+                turtle.moveForward(6);
+            } else {
+                turtle.setAngle(turtle.angle + Math.PI / 3);
+            }    
+        });
         return seq;
     }
 
@@ -69,17 +73,5 @@ window.addEventListener('load', ()=> {
             s.forEach(b => s.push(1-b));
         }
         return s;
-    }
-
-    //drawV(width/2, height/2, 0, 100);
-    function point({x, y}) {
-        let s = 4;
-        ctx.fillStyle = "white";
-        ctx.fillRect(x-s/2, y-s/2, s, s)
-    }
-
-    function clear() {
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, width, height);
     }
 });

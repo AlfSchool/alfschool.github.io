@@ -1,9 +1,13 @@
-window.addEventListener('load', ()=> {
-    let canvas = document.querySelector("canvas");
+window.addEventListener('load', () => {
+    let canvas = document.querySelector("#canvas");
     let height = canvas.height;
     let width = canvas.width;
     let ctx = canvas.getContext("2d");
-    clear();
+
+    ctx.globalAlpha = 0.4;
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, width, height);
+    ctx.globalAlpha = 1;
 
     let turtle = {
         x: 0,
@@ -35,30 +39,19 @@ window.addEventListener('load', ()=> {
         }
     }
 
-    point({x: 0, y: 0});
-    point({x: 0, y: height});
-    point({x: width, y: 0});
-    point({x: width, y: height});
-    point({x: width/2, y: height/2});
-
-    let l = 50;
-    let n = 5;
+    let l = 200;
+    let n = 10;
     let cx = width/2;
     let cy = height/2;
     turtle.x = cx;
     turtle.y = cy;
-    //point({x: cx, y: cy});
     turtle.putPenDown();
+    turtle.color = "brown";
+    turtle.angle = -Math.PI/2;
+    turtle.moveForward(350);
+    turtle.color = "green";
 
     drawTree(cx, cy, 0, l, n);
-
-    ctx.strokeStyle = "purple";
-    //drawV(width/2, height/2, 0, 100);
-    function point({x, y}) {
-        let s = 4;
-        ctx.fillStyle = "white";
-        ctx.fillRect(x-s/2, y-s/2, s, s)
-    }
 
     function drawTree(x, y, a, l, n) {
         if (n <= 0) {
@@ -94,10 +87,5 @@ window.addEventListener('load', ()=> {
             y: turtle.y
         });
         return points;
-    }
-
-    function clear() {
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, width, height);
     }
 });

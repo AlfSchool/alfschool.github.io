@@ -6,13 +6,13 @@ window.addEventListener('load', () => {
     let l = canvas.height;
 
     let randomPoints = [];
-    for (let i = 0; i < 10_000_000; i++) {
+    for (let i = 0; i < 1_000_000; i++) {
         randomPoints.push({
             x: Math.floor(Math.random() * 500), 
             y: Math.floor(Math.random() * 500),
             inside: false
         });
-    }     
+    }
 
     let inside = 0;
     ctx.beginPath();
@@ -29,11 +29,13 @@ window.addEventListener('load', () => {
 
     ctx.beginPath();
     randomPoints.forEach(p => {
-        ctx.fillStyle = p.inside ? "blue" : "red";
+        ctx.fillStyle = p.inside ? "red" : "black";
         ctx.fillRect(p.x, p.y, 1, 1);
     });
     ctx.fill();
 
     let pi = inside * 4 /randomPoints.length;
     console.log(pi);
+    const showResult = document.querySelector('#result');
+    showResult.innerHTML = `Pi value is ${pi}`;
 });

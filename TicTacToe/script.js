@@ -6,6 +6,11 @@ window.addEventListener('load', () => {
     const height = canvas.height;
     const width = canvas.width;
 
+    ctx.globalAlpha = 0.35;
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, width, height);
+    ctx.globalAlpha = 1;
+
     //x and y on the fact that we row-major the board and have i and j
     const drawX = (x, y) => {
         const cellHeight = height/3;
@@ -16,7 +21,7 @@ window.addEventListener('load', () => {
         ctx.lineTo((y+1)*cellWidth - offset, (x+1)*cellHeight - offset);
         ctx.moveTo((y+1)*cellWidth - offset, x*cellHeight + offset);
         ctx.lineTo(y*cellWidth + offset, (x+1)*cellHeight - offset);
-        ctx.strokeStyle = "red" 
+        ctx.strokeStyle = "green"; 
         ctx.lineWidth = 3;
         ctx.stroke(); 
         ctx.closePath();
@@ -33,7 +38,7 @@ window.addEventListener('load', () => {
         ctx.beginPath();
         ctx.arc(centerWidth, centerHeight, radius - offset, 0, 360);
         ctx.lineWidth = 3;
-        ctx.strokeStyle = "blue";
+        ctx.strokeStyle = "magenta";
         ctx.stroke(); 
         ctx.closePath();
     }
@@ -84,17 +89,12 @@ window.addEventListener('load', () => {
     }
 
     //lines of the board
+    ctx.fillStyle = "white";
     const LINE_THICKNESS = 1;
     ctx.fillRect(width/3, 0, LINE_THICKNESS, height);
     ctx.fillRect(width/3*2, 0, LINE_THICKNESS, height);
     ctx.fillRect(0, height/3, width, LINE_THICKNESS);
     ctx.fillRect(0, height/3*2, width, LINE_THICKNESS);
-    //borders
-    const BORD_THICKNESS = 2; 
-    ctx.fillRect(0, 0, width, BORD_THICKNESS);
-    ctx.fillRect(0, height-BORD_THICKNESS, width, BORD_THICKNESS)
-    ctx.fillRect(0, 0, BORD_THICKNESS, height);
-    ctx.fillRect(width-BORD_THICKNESS, 0, BORD_THICKNESS, height);
 
     const board = [
         [0,0,0],
@@ -121,8 +121,8 @@ window.addEventListener('load', () => {
         //they are also inverted
         let x = Math.floor((event.clientY - rect.top));
         let y = Math.floor((event.clientX - rect.left));
-        x = Math.floor(x/100);
-        y = Math.floor(y/100);
+        x = Math.floor(x/333);
+        y = Math.floor(y/333);
         if (!isFinished()) {
             console.log("okk");
             if (board[x][y] === 0) {
