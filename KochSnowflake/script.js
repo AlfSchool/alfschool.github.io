@@ -10,7 +10,7 @@ window.addEventListener('load', ()=> {
         y: 0,
         angle : 0,
         penDown : false,
-        color : "white",
+        color : "green",
         moveForward(l) {
             ctx.beginPath();
             ctx.strokeStyle = this.color;

@@ -38,7 +38,7 @@ window.addEventListener('load', () => {
         ctx.beginPath();
         ctx.arc(centerWidth, centerHeight, radius - offset, 0, 360);
         ctx.lineWidth = 3;
-        ctx.strokeStyle = "magenta";
+        ctx.strokeStyle = "red";
         ctx.stroke(); 
         ctx.closePath();
     }
