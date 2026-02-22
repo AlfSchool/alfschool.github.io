@@ -1,0 +1,69 @@
+@font-face {
+    src: url('/assets/Perfect_DOS_VGA_437_Win.ttf') format('truetype');
+    font-family: 'terminal';
+}
+
+canvas {
+  border: 2px solid red;
+}
+
+.crt {
+    background: linear-gradient(to top, #000000, #000000, #111111, #111111);
+    background-size: 100% 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: auto;
+}
+
+@media screen{
+  .crt {
+    animation: scanlines infinite 15s linear;
+  }
+} 
+
+@keyframes scanlines {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 -80px;
+  }
+}
+
+a {
+    color: red;
+    text-decoration: none;
+    display: block;
+    font: 2rem terminal;
+    filter: blur(.4px);
+}
+
+a:hover {
+    border: 3px solid red;
+    font: 3rem terminal;
+}
+
+h1 {
+    color: red;
+    text-decoration: none;
+    display: block;
+    border: 2px solid red;
+    font: 4rem terminal;
+    text-shadow: 0 0 10px red;
+}
+
+input {
+  display: block;
+  font: 3rem terminal;
+  border: 2px solid red;
+  background: transparent;
+  color: white;
+}
+
+input:focus {
+  outline: none;
+  border: 3px solid red;  
+}
