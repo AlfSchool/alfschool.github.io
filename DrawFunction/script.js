@@ -37,7 +37,7 @@ window.addEventListener('load', () => {
         ctx.fillRect(0, height/2, width, 2);
         ctx.fillRect(width/2, 0, 2, height);
         ctx.fillStyle = "white";
-        for (let x = -width/2; x < width/2; x = x + 0.05) { //x + 0.09) {
+        for (let x = -width/2; x < width/2; x = x + 0.01) {
             screen(x, f(x, coefficients));
         }
     }
