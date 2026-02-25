@@ -4,14 +4,11 @@ window.addEventListener('load', () => {
     const width = canvas.width;
     const ctx = canvas.getContext('2d');
 
-    ctx.globalAlpha = 0.4;
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, width, height);
-    ctx.globalAlpha = 1;
+    clear();
     
     //define your function here
     const func = (x, coefficients) => {
-        coefficients = coefficients.reverse();
+        coefficients = coefficients;
         let y = 0;
         const len = coefficients.length;
         for (let i = 0; i < len; i++) {
@@ -40,13 +37,16 @@ window.addEventListener('load', () => {
         ctx.fillRect(0, height/2, width, 2);
         ctx.fillRect(width/2, 0, 2, height);
         ctx.fillStyle = "white";
-        for (let x = -width/2; x < width/2; x = x + 0.09) {
+        for (let x = -width/2; x < width/2; x = x + 0.05) { //x + 0.09) {
             screen(x, f(x, coefficients));
         }
     }
 
     function clear() {
-        ctx.clearRect(0, 0, width, height);
+        ctx.globalAlpha = 0.4;
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.globalAlpha = 1;
     }
 
     function screen(x, y) {
