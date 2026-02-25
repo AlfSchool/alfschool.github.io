@@ -1,40 +1,40 @@
 "use strict";
 
 window.addEventListener('load', () => {
-    let canvas = document.querySelector('canvas');
+    let canvas = document.querySelector('#canvas');
     let ctx = canvas.getContext("2d");
     let l = canvas.height;
 
-    let randomPoints = [];
-    for (let i = 0; i < 1_000_000; i++) {
-        randomPoints.push({
-            x: Math.floor(Math.random() * 500), 
-            y: Math.floor(Math.random() * 500),
-            inside: false
-        });
-    }
-
+    let total = 1_000_000;
     let inside = 0;
+
+    let x = 0;
+    let y = 0;
+
+    let dx = 0;
+    let dy = 0;
+    let distance = 0;
+
     ctx.beginPath();
-    randomPoints.forEach(p => {
-        let dx = Math.abs(p.x - l/2);
-        let dy = Math.abs(p.y - l/2);
-        let distance = Math.sqrt(dx * dx + dy * dy);
+    for (let i = 0; i < total; i++) {
+        x = Math.floor(Math.random() * 500);
+        y = Math.floor(Math.random() * 500);
+
+        dx = Math.abs(x - l/2);
+        dy = Math.abs(y - l/2);
+        distance = Math.sqrt(dx * dx + dy * dy);
+
         if (distance < l/2) {
-            p.inside = true;
+            ctx.fillStyle = "red";
             inside++
+        } else {
+            ctx.fillStyle = "gainsboro";
         }
-    });
+        ctx.fillRect(x, y, 1, 1);
+    }
     ctx.fill();
 
-    ctx.beginPath();
-    randomPoints.forEach(p => {
-        ctx.fillStyle = p.inside ? "red" : "black";
-        ctx.fillRect(p.x, p.y, 1, 1);
-    });
-    ctx.fill();
-
-    let pi = inside * 4 /randomPoints.length;
+    let pi = inside * 4 / total;
     console.log(pi);
     const showResult = document.querySelector('#result');
     showResult.innerHTML = `Pi value is ${pi}`;

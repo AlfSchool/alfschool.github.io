@@ -23,7 +23,7 @@ window.addEventListener('load', () => {
             clear();
             console.log("drawing");
             let inputString = e.target.value;
-            draw(func, JSON.parse(inputString));
+            draw(func, JSON.parse("[" + inputString + "]"));
         }
     });
 
