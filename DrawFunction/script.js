@@ -8,7 +8,7 @@ window.addEventListener('load', () => {
     
     //define your function here
     const func = (x, coefficients) => {
-        coefficients = coefficients;
+        coefficients = coefficients.toReversed();
         let y = 0;
         const len = coefficients.length;
         for (let i = 0; i < len; i++) {
