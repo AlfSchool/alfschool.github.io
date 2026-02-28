@@ -10,7 +10,6 @@ canvas {
 .crt {
     background: linear-gradient(to top, #000000, #000000, #111111, #111111);
     background-size: 100% 10px;
-    position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
