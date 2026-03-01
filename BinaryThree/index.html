@@ -9,7 +9,16 @@
     <script src="script.js"> </script>
 </head>
 <body class="crt">
+     <a class="back" href="../index.html"><--</a>
     <h1>Tree</h1>
-    <canvas id="canvas" height="1000" width="1000"> </canvas>
+    <div class="main">
+        <canvas id="canvas" height="1000" width="1000"> </canvas>
+        <div class="controls">
+            <div>
+                <label id="recursionLabel" for="recursionInput">Recursion</label>
+                <input id="recursionInput" type="range" min="1" max="15" value="10">
+            </div>
+        </div>
+    </div>
 </body>
 </html>

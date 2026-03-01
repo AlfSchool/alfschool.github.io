@@ -8,8 +8,17 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body class="crt">
+    <a class="back" href="../index.html"><--</a>
     <h1>Monte carlo method</h1>
-    <canvas id="canvas" height="500" width="500"></canvas>
-    <h6 id="result"></h6>
+    <div class="main">
+        <canvas id="canvas" height="500" width="500"></canvas>
+        <div class="controls">
+            <div>
+                <label id="numberPointsLabel" for="numberPointsInput">Number of points is: </label>
+                <input id="numberPointsInput" type="range" min="1" max="1000000" value="500000">
+            </div>
+            <h6 id="result"></h6>
+        </div>
+    </div>
 </body>
 </html>

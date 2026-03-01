@@ -1,15 +1,54 @@
-"use strict"
+"use strict";
 
 window.addEventListener('load', () => {
-    const canvas = document.querySelector("canvas");
+    const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
     const height = canvas.height;
     const width = canvas.width;
 
-    ctx.globalAlpha = 0.35;
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, width, height);
-    ctx.globalAlpha = 1;
+    let board = [
+        [0, 0, 0],
+        [0, 0, 0],
+        [0, 0, 0]
+    ];
+    let myTurn = true;
+    let player = 2;
+
+    reset();
+
+    const showWhoWon = document.querySelector('#whoWinsLabel');
+    const resetButton = document.querySelector('#resetButton');
+
+    resetButton.addEventListener('click', () => {
+        reset();
+    });
+
+    canvas.addEventListener('click', (event) => {
+        const rect = canvas.getBoundingClientRect();
+        //they are also inverted
+        let x = Math.floor((event.clientY - rect.top));
+        let y = Math.floor((event.clientX - rect.left));
+        x = Math.floor(x/333);
+        y = Math.floor(y/333);
+        if (!isFinished()) {
+            if (board[x][y] === 0) {
+                player = myTurn ? 2 : 1;
+                board[x][y] = player;
+                myTurn = !myTurn;
+            }    
+        } 
+        //redraw the board
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board[i].length; j++) {
+                if (board[i][j] === 1) {
+                    drawO(i, j);
+                }
+                if (board[i][j] === 2) {
+                    drawX(i, j);
+                }
+            }    
+        }
+    });
 
     //x and y on the fact that we row-major the board and have i and j
     const drawX = (x, y) => {
@@ -87,61 +126,24 @@ window.addEventListener('load', () => {
         }
         return false;
     }
+    
+    function reset() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = "black";
+        ctx.globalAlpha = 0.35;
+        ctx.fillRect(0, 0, width,   height);
+        ctx.globalAlpha = 1;
 
-    //lines of the board
-    ctx.fillStyle = "white";
-    const LINE_THICKNESS = 1;
-    ctx.fillRect(width/3, 0, LINE_THICKNESS, height);
-    ctx.fillRect(width/3*2, 0, LINE_THICKNESS, height);
-    ctx.fillRect(0, height/3, width, LINE_THICKNESS);
-    ctx.fillRect(0, height/3*2, width, LINE_THICKNESS);
-
-    const board = [
-        [0,0,0],
-        [0,0,0],
-        [0,0,0]
-    ]
-
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board[i].length; j++) {
-            if (board[i][j] === 1) {
-                drawO(i, j);
-            }
-            if (board[i][j] === 2) {
-                drawX(i, j);
-            }
-        }
+        ctx.fillStyle = "white";
+        const LINE_THICKNESS = 1;
+        ctx.fillRect(width/3, 0, LINE_THICKNESS, height);
+        ctx.fillRect(width/3*2, 0, LINE_THICKNESS, height);
+        ctx.fillRect(0, height/3, width, LINE_THICKNESS);
+        ctx.fillRect(0, height/3*2, width, LINE_THICKNESS);
+        board = [
+            [0,0,0],
+            [0,0,0],
+            [0,0,0]
+        ];
     }
-
-    let myTurn = true;
-    let player = 2;
-
-    canvas.addEventListener('click', (event) => {
-        const rect = canvas.getBoundingClientRect();
-        //they are also inverted
-        let x = Math.floor((event.clientY - rect.top));
-        let y = Math.floor((event.clientX - rect.left));
-        x = Math.floor(x/333);
-        y = Math.floor(y/333);
-        if (!isFinished()) {
-            console.log("okk");
-            if (board[x][y] === 0) {
-                console.log("okkk");
-                player = myTurn ? 2 : 1;
-                board[x][y] = player;
-                myTurn = !myTurn;
-            }    
-        }
-        //redraw the board
-        for (let i = 0; i < board.length; i++) {
-            for (let j = 0; j < board[i].length; j++) {
-                if (board[i][j] === 1) {
-                    drawO(i, j);
-                }
-                if (board[i][j] === 2) {
-                    drawX(i, j);
-                }
-            }    
-        }
-    });
 });

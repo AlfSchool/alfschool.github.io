@@ -4,17 +4,14 @@ window.addEventListener('load', () => {
     let width = canvas.width;
     let ctx = canvas.getContext("2d");
 
-    ctx.globalAlpha = 0.4;
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, width, height);
-    ctx.globalAlpha = 1;
+    clear();
 
     let turtle = {
         x: 0,
         y: 0,
         angle : 0,
         penDown : false,
-        color : "white",
+        color : "green",
         moveForward(l) {
             ctx.beginPath();
             ctx.strokeStyle = this.color;
@@ -46,12 +43,15 @@ window.addEventListener('load', () => {
     turtle.x = cx;
     turtle.y = cy;
     turtle.putPenDown();
-    turtle.color = "brown";
-    turtle.angle = -Math.PI/2;
-    turtle.moveForward(350);
-    turtle.color = "green";
 
     drawTree(cx, cy, 0, l, n);
+
+    const recursionSlider = document.querySelector('#recursionInput');
+    recursionSlider.addEventListener('input', (e) => {
+        n = e.target.value;
+        clear();
+        drawTree(cx, cy, 0, l, n);
+    });
 
     function drawTree(x, y, a, l, n) {
         if (n <= 0) {
@@ -87,5 +87,18 @@ window.addEventListener('load', () => {
             y: turtle.y
         });
         return points;
+    }
+
+    function clear() {
+        ctx.fillRect(0, 0, width, height);
+        ctx.globalAlpha = 0.4;
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, width, height);
+        ctx.globalAlpha = 1;
+        ctx.beginPath();
+        ctx.strokeStyle = "brown";
+        ctx.moveTo(width/2, height/2);
+        ctx.lineTo(width/2, height/2 + 350);
+        ctx.stroke();
     }
 });

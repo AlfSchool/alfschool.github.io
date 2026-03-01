@@ -1,6 +1,10 @@
 @font-face {
-    src: url('/assets/Perfect_DOS_VGA_437_Win.ttf') format('truetype');
-    font-family: 'terminal';
+  src: url('/assets/Perfect_DOS_VGA_437_Win.ttf') format('truetype');
+  font-family: 'terminal';
+}
+
+html {
+  scrollbar-color: #111111 black;
 }
 
 canvas {
@@ -8,13 +12,13 @@ canvas {
 }
 
 .crt {
-    background: linear-gradient(to top, #000000, #000000, #111111, #111111);
-    background-size: 100% 10px;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    overflow: auto;
+  background: linear-gradient(to top, #000000, #000000, #111111, #111111);
+  background-size: 100% 10px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
 }
 
 @media screen{
@@ -32,34 +36,45 @@ canvas {
   }
 }
 
+.back {
+  display: inline;
+}
+
 a {
-    color: red;
-    text-decoration: none;
-    display: block;
-    font: 2rem terminal;
-    filter: blur(.4px);
+  color: red;
+  text-decoration: none;
+  display: block;
+  font: 2rem terminal;
+  filter: blur(.4px);
 }
 
 a:hover {
-    border: 3px solid red;
-    font: 3rem terminal;
+  border: 3px solid red;
+  font: 3rem terminal;
 }
 
 h1 {
-    color: red;
-    text-decoration: none;
-    display: block;
-    border: 2px solid red;
-    font: 4rem terminal;
-    text-shadow: 0 0 10px red;
+  color: red;
+  text-decoration: none;
+  display: block;
+  border: 2px solid red;
+  font: 4rem terminal;
+  text-shadow: 0 0 10px red;
+}
+
+label {
+  color: red;
+  text-decoration: none;
+  display: block;
+  font: 3rem terminal;
 }
 
 h6 {
-    color: red;
-    text-decoration: none;
-    display: block;
-    margin-top: 2rem;
-    font: 4rem terminal;
+  color: red;
+  text-decoration: none;
+  display: block;
+  margin-top: 2rem;
+  font: 4rem terminal;
 }
 
 input {
@@ -75,10 +90,53 @@ input:focus {
   border: 3px solid red;  
 }
 
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  margin: 1rem 0;
+  border: none;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 2px;
+  background: repeating-linear-gradient(
+    to right,
+    red 0px,
+    red 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: black;
+  border: 2px solid red;
+  border-radius: 0;
+  cursor: pointer;
+}
+
 button {
   display: block;
   font: 2rem terminal;
   border: 2px solid red;
   background: transparent;
   color: white;
+}
+
+button:hover {
+  border: 3px solid red;
+}
+
+.main {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
 }

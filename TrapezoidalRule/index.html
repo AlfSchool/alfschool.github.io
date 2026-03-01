@@ -9,8 +9,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="crt">
+    <a class="back" href="../index.html"><--</a>
     <h1>Trapezoidal rule</h1>
-    <canvas id="canvas" height="1000" width="1000"></canvas>
-    <h6 id="showResult"></h6>
+    <div class="main">
+        <canvas id="canvas" height="1000" width="1000"></canvas>
+        <div class="controls">
+            <div>
+                <label id="rectanglesLabel" for="rectanglesInput">Number of rectangles: </label>
+                <input id="rectanglesInput" type="input" min="1" max="10000" value="20">
+            </div>
+            <h6 id="showResult"></h6>
+        </div>
+    </div>
 </body>
 </html>

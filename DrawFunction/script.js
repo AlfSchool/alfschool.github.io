@@ -56,6 +56,6 @@ window.addEventListener('load', () => {
     }
 
     function point(x, y, s = 2) {
-        ctx.fillRect(x - s/2, y - s/2, s/2, s/2);
+        ctx.fillRect(x + s/2, y + s/2, s/2, s/2);
     }
 });

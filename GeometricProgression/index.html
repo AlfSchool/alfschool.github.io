@@ -9,7 +9,17 @@
     <script src="script.js"> </script>
 </head>
 <body class="crt">
+    <a class="back" href="../index.html"><--</a>
     <h1>Geometric progression</h1>
-    <canvas id="canvas" height="500" width="500"> </canvas>
+    <div class="main">
+        <canvas id="canvas" height="500" width="500"> </canvas>
+        <div class="controls">
+            <div>
+                <label id="lengthLabel" for="lengthInput">Length of each edge: </label>
+                <input id="lengthInput" type="range" min="1" max="15" value="6">
+            </div>
+            <h6 id="showResult"></h6>
+        </div>
+    </div>
 </body>
 </html>
