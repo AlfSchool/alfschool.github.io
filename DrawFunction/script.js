@@ -29,13 +29,7 @@ window.addEventListener('load', () => {
 
 
     function draw(f, coefficients) {
-        ctx.globalAlpha = 0.4;
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, width, height);
-        ctx.globalAlpha = 1;
-        ctx.fillStyle = "green";
-        ctx.fillRect(0, height/2, width, 2);
-        ctx.fillRect(width/2, 0, 2, height);
+        clear();
         ctx.fillStyle = "white";
         for (let x = -width/2; x < width/2; x = x + 0.01) {
             screen(x, f(x, coefficients));
@@ -45,8 +39,11 @@ window.addEventListener('load', () => {
     function clear() {
         ctx.globalAlpha = 0.4;
         ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillRect(0, 0, width, height);
         ctx.globalAlpha = 1;
+        ctx.fillStyle = "green";
+        ctx.fillRect(0, height/2, width, 2);
+        ctx.fillRect(width/2, 0, 2, height);
     }
 
     function screen(x, y) {

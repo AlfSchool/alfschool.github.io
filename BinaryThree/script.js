@@ -4,8 +4,6 @@ window.addEventListener('load', () => {
     let width = canvas.width;
     let ctx = canvas.getContext("2d");
 
-    clear();
-
     let turtle = {
         x: 0,
         y: 0,
@@ -38,30 +36,41 @@ window.addEventListener('load', () => {
 
     let l = 200;
     let n = 10;
+    let ba = Math.PI / 6;
     let cx = width/2;
     let cy = height/2;
     turtle.x = cx;
     turtle.y = cy;
-    turtle.putPenDown();
 
+    clear();
+    turtle.putPenDown();
     drawTree(cx, cy, 0, l, n);
 
     const recursionSlider = document.querySelector('#recursionInput');
     recursionSlider.addEventListener('input', (e) => {
-        n = e.target.value;
+        n = Number(e.target.value);
         clear();
-        drawTree(cx, cy, 0, l, n);
+        drawTree(cx, cy, 0, l, n, ba);
     });
 
-    function drawTree(x, y, a, l, n) {
+    const angleSlider = document.querySelector('#angleInput');
+    angleSlider.addEventListener('input', (e) => {
+        ba = Number(e.target.value); //branching angle
+        ba = toRadian(ba);
+        clear();
+        drawTree(cx, cy, 0, l, n, ba);
+    });
+
+    function drawTree(x, y, a, l, n, ba) { 
+        //ba is branching angle
         if (n <= 0) {
             return;
         }
         turtle.x = x;
         turtle.y = y;
         let verteces = drawV(x, y, a, l);
-        drawTree(verteces[0].x, verteces[0].y, a - Math.PI / 6, l / 2, n-1);
-        drawTree(verteces[1].x, verteces[1].y, a + Math.PI / 6, l / 2, n-1);
+        drawTree(verteces[0].x, verteces[0].y, a - ba, l / 2, n-1, ba);
+        drawTree(verteces[1].x, verteces[1].y, a + ba, l / 2, n-1, ba);
     }
 
     function drawV(x, y, a, l) {
@@ -89,16 +98,25 @@ window.addEventListener('load', () => {
         return points;
     }
 
-    function clear() {
-        ctx.fillRect(0, 0, width, height);
+    function toRadian(degrees) {
+        return degrees * (Math.PI / 180);
+    }
+
+    function clear(ts = 350) { //ts is trunk size
+        ctx.clearRect(0, 0, width, height);
         ctx.globalAlpha = 0.4;
         ctx.fillStyle = "black";
         ctx.fillRect(0, 0, width, height);
+        ctx.fillRect(0, height / 2 + ts, width, height - (height / 2 + ts));
         ctx.globalAlpha = 1;
         ctx.beginPath();
         ctx.strokeStyle = "brown";
         ctx.moveTo(width/2, height/2);
-        ctx.lineTo(width/2, height/2 + 350);
+        ctx.lineTo(width/2, height/2 + ts);
+        ctx.moveTo(0, height/2 + ts);
+        ctx.strokeStyle = "green";
+        ctx.moveTo(0, height / 2 + ts);
+        ctx.lineTo(width, height / 2 + ts);
         ctx.stroke();
     }
 });
