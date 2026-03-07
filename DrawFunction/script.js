@@ -3,40 +3,37 @@ window.addEventListener('load', () => {
     const height = canvas.height;
     const width = canvas.width;
     const ctx = canvas.getContext('2d');
+    const zoom = document.querySelector('#zoom');
+    let f = null; 
 
     clear();
-    
-    //define your function here
-    const func = (x, coefficients) => {
-        coefficients = coefficients.toReversed();
-        let y = 0;
-        const len = coefficients.length;
-        for (let i = 0; i < len; i++) {
-            y += (coefficients[i] * (Math.pow(x, i))); 
-        }
-        return y;
-    }
+
+    const zoomSlider = document.querySelector('#zoom');
+    zoomSlider.addEventListener('input', () => {
+        draw(f);
+    });
 
     const inputField = document.querySelector('#stringField');
     inputField.addEventListener('keydown', (e) => {
         if (e.code === 'Enter') {
             clear();
             console.log("drawing");
-            let inputString = e.target.value;
-            draw(func, JSON.parse("[" + inputString + "]"));
+            f = new Function('x', "return " + e.target.value);
+            draw(f); 
         }
     });
 
 
-    function draw(f, coefficients) {
+    function draw(f) {
         clear();
         ctx.fillStyle = "white";
         for (let x = -width/2; x < width/2; x = x + 0.01) {
-            screen(x, f(x, coefficients));
+            screen(x * zoom.value, f(x) * zoom.value);
         }
     }
 
     function clear() {
+        ctx.clearRect(0, 0, height, width);
         ctx.globalAlpha = 0.4;
         ctx.fillStyle = "black";
         ctx.fillRect(0, 0, width, height);
