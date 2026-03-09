@@ -27,9 +27,16 @@ window.addEventListener('load', () => {
     function draw(f) {
         clear();
         ctx.fillStyle = "white";
+        ctx.beginPath();
+        const firstX = -width/2;
+        const firstY = f(firstX) * zoom.value;
+        ctx.moveTo(firstX, firstY);
         for (let x = -width/2; x < width/2; x = x + 0.01) {
-            screen(x * zoom.value, f(x) * zoom.value);
+            const newPoint = screen(x * zoom.value, f(x) * zoom.value);
+            ctx.lineTo(newPoint.x, newPoint.y);
         }
+        ctx.strokeStyle = "white";
+        ctx.stroke();
     }
 
     function clear() {
@@ -46,10 +53,9 @@ window.addEventListener('load', () => {
     function screen(x, y) {
         const canvasX = x  + width/2;
         const canvasY = -y  + height/2;
-        point(canvasX, canvasY);
-    }
-
-    function point(x, y, s = 2) {
-        ctx.fillRect(x + s/2, y + s/2, s/2, s/2);
+        return {
+            x: canvasX,
+            y: canvasY
+        };
     }
 });

@@ -18,6 +18,7 @@
             moveForward(l) {
                 ctx.beginPath();
                 ctx.strokeStyle = this.color;
+                ctx.lineWidth = 1.25;
                 ctx.moveTo(this.x, this.y);
                 this.x = this.x + Math.cos(-this.angle) * l;
                 this.y = this.y + Math.sin(-this.angle) * l;
@@ -38,7 +39,6 @@
                 this.penDown = true;
             }
         }
-
         turtle.putPenDown();
 
         drawSequence(10, 6);
