@@ -25,5 +25,24 @@ window.addEventListener('load', async () => {
         newCard.src = cardLink;
         newCard.classList.add('card');
         hand.appendChild(newCard);
+        let angle = 0;
+        for (let i = Math.floor(hand.children.length / 2); i >= 0; i--) {
+            if (hand.children[i] === undefined) {
+                console.log("fdjsfj");
+                break;
+            }
+            hand.children[i].style.transform = "rotate(" + angle + "deg)";
+            angle -= 1;
+        }
+        angle = 0;
+        console.log(hand.children[hand.children.length-1]);
+        for (let i = Math.floor(hand.children.length / 2); i < hand.children.length; i++) {
+            if (hand.children[i] === undefined) {
+                console.log("fdjsfj");
+                break;
+            }
+            hand.children[i].style.transform = "rotate(" + angle + "deg)";
+            angle += 1;
+        }
     }
 });

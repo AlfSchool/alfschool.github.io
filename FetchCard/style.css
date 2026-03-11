@@ -1,7 +1,16 @@
 #hand {
     display: flex;
+    justify-content: space-between;
+    margin-left: 220px;
+    transform-origin: bottom center;
 }
 
 .card {
-    
+    margin-left: -220px;
+}
+
+@property --w_raw {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 100vw;
 }

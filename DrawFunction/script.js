@@ -17,8 +17,21 @@ window.addEventListener('load', () => {
     inputField.addEventListener('keydown', (e) => {
         if (e.code === 'Enter') {
             clear();
-            console.log("drawing");
-            f = new Function('x', "return " + e.target.value);
+            let stringFunction = e.target.value;
+            const mathFunctions = [
+                "abs","acos","acosh","asin","asinh","atan","atan2","atanh",
+                "cbrt","ceil","clz32","cos","cosh","exp","expm1","floor",
+                "f16round","fround","hypot","imul","log","log10","log1p","log2",
+                "max","min","pow","random","round","sign","sin","sinh",
+                "sqrt","sumPrecise","tan","tanh","trunc"
+            ];
+
+            mathFunctions.forEach(fn => {
+            const regex = new RegExp(`\\b${fn}\\b`, "g");
+            stringFunction = stringFunction.replace(regex, `Math.${fn}`);
+});
+            console.log(stringFunction);
+            f = new Function('x', "return " + stringFunction);
             draw(f); 
         }
     });
