@@ -25,24 +25,34 @@ window.addEventListener('load', async () => {
         newCard.src = cardLink;
         newCard.classList.add('card');
         hand.appendChild(newCard);
+        updatePositionCards();
+    }
+
+    function updatePositionCards() {
         let angle = 0;
-        for (let i = Math.floor(hand.children.length / 2); i >= 0; i--) {
-            if (hand.children[i] === undefined) {
-                console.log("fdjsfj");
-                break;
-            }
-            hand.children[i].style.transform = "rotate(" + angle + "deg)";
-            angle -= 1;
+        let incrementAngle = 0.75;
+        let height = 10;
+        let decreaseHeight = 1;
+        let length = hand.children.length;
+        let middle = Math.floor(length / 2);
+        if (length % 2 == 0) {
+            middle--;
         }
+        for (let i = middle; i >= 0; i--) {
+            let card = hand.children[i]; 
+            card.style.transform = `rotate(${angle}deg)`; // translateY(-${height}px)`;  
+            angle -= incrementAngle;
+            height -= decreaseHeight;
+        }
+        console.log("height reached: " + height);
         angle = 0;
-        console.log(hand.children[hand.children.length-1]);
-        for (let i = Math.floor(hand.children.length / 2); i < hand.children.length; i++) {
-            if (hand.children[i] === undefined) {
-                console.log("fdjsfj");
-                break;
-            }
-            hand.children[i].style.transform = "rotate(" + angle + "deg)";
-            angle += 1;
+        height = 10;
+        middle = Math.floor(length / 2);
+        for (let i = middle; i < length; i++) {
+            let card = hand.children[i];
+            card.style.transform = `rotate(${angle}deg)`; //translateY(-${height}px)`;
+            angle += incrementAngle;
+            height -= decreaseHeight;
         }
     }
 });
