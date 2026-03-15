@@ -37,7 +37,11 @@ window.addEventListener('load', () => {
             draw(f); 
             let x = Number(e.target.value);
             let d = derivative(f, x);
-            showDerivative.innerHTML = "is: " + d;
+            showDerivative.innerHTML = "is: " + d.toPrecision(6);
+
+            clear();
+            draw(f);
+            drawTangent(f, x);
         }
     });
 
@@ -51,8 +55,8 @@ window.addEventListener('load', () => {
             f = new Function('x', "return " + stringFunction);
             draw(f); 
             let x = Number(e.target.value);
-            let d = limit(f, x);
-            showLimit.innerHTML = "is: " + d;
+            let l = limit(f, x);
+            showLimit.innerHTML = "is: " + l.toPrecision(6);
         }
     });
 
@@ -107,8 +111,31 @@ window.addEventListener('load', () => {
         };
     }
 
+    function drawTangent(f, x) {
+        const m = derivative(f, x);
+        const q = f(x);
+
+        const length = 100;  
+
+        const x1 = x - length;
+        const y1 = q + m * (x1 - x);
+
+        const x2 = x + length;
+        const y2 = m * (x2 - x) + q;
+
+        const p1 = screen(x1 * zoom.value, y1 * zoom.value);
+        const p2 = screen(x2 * zoom.value, y2 * zoom.value);
+
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.stroke();
+    }
+
     function derivative(f, x) {
-        const h = 1e-15;
+        const h = 1e-12;
         return (f(x + h) - f(x)) / h;
     }
 

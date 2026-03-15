@@ -48,6 +48,10 @@ window.addEventListener('load', () => {
                 }
             }    
         }
+
+        if (isFinished()) {
+            drawVictoryLine();
+        }
     });
 
     //x and y on the fact that we row-major the board and have i and j
@@ -79,6 +83,36 @@ window.addEventListener('load', () => {
         ctx.lineWidth = 3;
         ctx.strokeStyle = "red";
         ctx.stroke(); 
+        ctx.closePath();
+    }
+
+    function drawVictoryLine() {
+        ctx.strokeStyle = "purple";
+        ctx.lineWidth = 7;
+        ctx.beginPath();
+
+        for (let i = 0; i < 3; i++) {
+            if (board[i][0] && board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
+                ctx.moveTo(0, i * height/3 + height/6);
+                ctx.lineTo(width, i * height/3 + height/6);
+            }
+            if (board[0][i] && board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
+                ctx.moveTo(i * width/3 + width/6, 0);
+                ctx.lineTo(i * width/3 + width/6, height);
+            }
+        }
+        const offset = 40;
+        if (board[0][0] && board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+            ctx.moveTo(offset, offset);
+            ctx.lineTo(width - offset, height - offset);
+        }
+
+        if (board[0][2] && board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
+            ctx.moveTo(width - offset, offset);
+            ctx.lineTo(offset, height - offset);
+        }
+
+        ctx.stroke();
         ctx.closePath();
     }
 
