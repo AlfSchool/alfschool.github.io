@@ -15,11 +15,27 @@
         <canvas id="canvas" height="1000" width="1000"> </canvas>
         <div class="controls">
             <div>
-                <input type="text" id="stringField" placeholder="Coefficients"/>
+                <input type="text" id="stringField" placeholder="ex.x**(Math.cos(x))"/>
             </div>
             <div>
                 <label for="zoom">Zoom:</label>
                 <input id="zoom" type="range" min="1" max="100" value="1">
+            </div>
+
+            <div>
+                <div>
+                    <label for="derivativeField">Derivative of:</label>
+                    <input id="derivativeField" type="text" placeholder="x value">
+                </div>
+                <h6 id="showDerivative"></h6>
+            </div>
+
+            <div>
+                <div>
+                    <label for="limitField">Limit of:</label>
+                    <input id="limitField" type="text" placeholder="x value">
+                </div>
+                <h6 id="showLimit"></h6>
             </div>
         </div>
     </div>

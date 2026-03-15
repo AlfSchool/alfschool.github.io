@@ -18,7 +18,46 @@ window.addEventListener('load', () => {
         if (e.code === 'Enter') {
             clear();
             let stringFunction = e.target.value;
-            const mathFunctions = [
+            stringFunction = stringFormatting(stringFunction);
+            f = new Function('x', "return " + stringFunction);
+            draw(f); 
+        }
+    });
+
+
+
+    const xPointDerivative = document.querySelector('#derivativeField');
+    const showDerivative = document.querySelector('#showDerivative');
+    xPointDerivative.addEventListener('keydown', (e) => {
+        if (e.code === 'Enter') {
+            clear();
+            let stringFunction = inputField.value;
+            stringFunction = stringFormatting(stringFunction);
+            f = new Function('x', "return " + stringFunction);
+            draw(f); 
+            let x = Number(e.target.value);
+            let d = derivative(f, x);
+            showDerivative.innerHTML = "is: " + d;
+        }
+    });
+
+    const xPointLimit = document.querySelector('#limitField');
+    const showLimit = document.querySelector('#showLimit');
+    xPointLimit.addEventListener('keydown', (e) => {
+        if (e.code === 'Enter') {
+            clear();
+            let stringFunction = inputField.value;
+            stringFunction = stringFormatting(stringFunction);
+            f = new Function('x', "return " + stringFunction);
+            draw(f); 
+            let x = Number(e.target.value);
+            let d = limit(f, x);
+            showLimit.innerHTML = "is: " + d;
+        }
+    });
+
+    function stringFormatting(fString) {
+        const mathFunctions = [
                 "abs","acos","acosh","asin","asinh","atan","atan2","atanh",
                 "cbrt","ceil","clz32","cos","cosh","exp","expm1","floor",
                 "f16round","fround","hypot","imul","log","log10","log1p","log2",
@@ -26,16 +65,12 @@ window.addEventListener('load', () => {
                 "sqrt","sumPrecise","tan","tanh","trunc"
             ];
 
-            mathFunctions.forEach(fn => {
-            const regex = new RegExp(`\\b${fn}\\b`, "g");
-            stringFunction = stringFunction.replace(regex, `Math.${fn}`);
-});
-            console.log(stringFunction);
-            f = new Function('x', "return " + stringFunction);
-            draw(f); 
-        }
-    });
+        mathFunctions.forEach(fn => {
+            fString = fString.replaceAll(fn, "Math." +  fn);
+        });
 
+        return fString;
+    }
 
     function draw(f) {
         clear();
@@ -70,5 +105,31 @@ window.addEventListener('load', () => {
             x: canvasX,
             y: canvasY
         };
+    }
+
+    function derivative(f, x) {
+        const h = 1e-15;
+        return (f(x + h) - f(x)) / h;
+    }
+
+    function limit(f, x) {
+        const y = f(x);
+        if (!isNaN(y)) {
+            return y;
+        }
+        const h = Number.MIN_VALUE;
+        const left = f(x - h);
+        const right = f(x + h);
+        if (isNaN(left) && isNaN(right)) {
+            return NaN;
+        }
+        let l = isNaN(left) ? right : left;
+        if (l < -500) {
+            l = -Infinity;
+        }
+        if (l > 500) {
+            l = Infinity;
+        }
+        return l;
     }
 });
