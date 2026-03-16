@@ -12,7 +12,7 @@
     <a class="back" href="../index.html"><--</a>
     <h1>Draw function</h1>
     <div class="main">
-        <canvas id="canvas" height="1000" width="1000"> </canvas>
+        <canvas id="canvas" height="900" width="900"> </canvas>
         <div class="controls">
             <div>
                 <input type="text" id="stringField" placeholder="ex.x**(Math.cos(x))"/>
@@ -22,19 +22,22 @@
                 <input id="zoom" type="range" min="1" max="100" value="1">
             </div>
 
-            <div>
-                <div>
-                    <label for="derivativeField">Derivative of:</label>
-                    <input id="derivativeField" type="text" placeholder="x value">
-                </div>
+            <div class="derivativeBox">
+                <h6 class="math">D(</h6>
+                <input id="derivativeField" type="text" placeholder="x">
+                <h6 class="math">) =  </h6>
                 <h6 id="showDerivative"></h6>
             </div>
 
-            <div>
-                <div>
-                    <label for="limitField">Limit of:</label>
-                    <input id="limitField" type="text" placeholder="x value">
+            <div class="limitBox">
+                <div class="limSymbol">
+                    <h6>lim</h6>
+                    <h6 class="under">
+                        x ->  <input id="limitField" type="text" placeholder="x">
+                    </h6>
                 </div>
+
+                <h6> = </h6>
                 <h6 id="showLimit"></h6>
             </div>
         </div>

@@ -5,12 +5,14 @@ window.addEventListener('load', () => {
     const ctx = canvas.getContext('2d');
     const zoom = document.querySelector('#zoom');
     let f = null; 
+    let tangentX = null;
 
     clear();
 
     const zoomSlider = document.querySelector('#zoom');
     zoomSlider.addEventListener('input', () => {
         draw(f);
+        drawTangent(f, tangentX);
     });
 
     const inputField = document.querySelector('#stringField');
@@ -21,6 +23,9 @@ window.addEventListener('load', () => {
             stringFunction = stringFormatting(stringFunction);
             f = new Function('x', "return " + stringFunction);
             draw(f); 
+            if (tangentX !== null) {
+                drawTangent(f, tangentX);
+            }
         }
     });
 
@@ -36,8 +41,9 @@ window.addEventListener('load', () => {
             f = new Function('x', "return " + stringFunction);
             draw(f); 
             let x = Number(e.target.value);
+            tangentX = x;
             let d = derivative(f, x);
-            showDerivative.innerHTML = "is: " + d.toPrecision(6);
+            showDerivative.innerHTML = " " + d.toPrecision(6);
 
             clear();
             draw(f);
@@ -49,14 +55,16 @@ window.addEventListener('load', () => {
     const showLimit = document.querySelector('#showLimit');
     xPointLimit.addEventListener('keydown', (e) => {
         if (e.code === 'Enter') {
-            clear();
-            let stringFunction = inputField.value;
-            stringFunction = stringFormatting(stringFunction);
-            f = new Function('x', "return " + stringFunction);
-            draw(f); 
+            if (f === null) {
+                clear();
+                let stringFunction = inputField.value;
+                stringFunction = stringFormatting(stringFunction);
+                f = new Function('x', "return " + stringFunction);
+                draw(f);
+            } 
             let x = Number(e.target.value);
             let l = limit(f, x);
-            showLimit.innerHTML = "is: " + l.toPrecision(6);
+            showLimit.innerHTML = " " + l.toPrecision(6);
         }
     });
 

@@ -1,5 +1,52 @@
 h6 {
     margin-top: 2px;
     margin-bottom: 2px;
-    color: green !important
+}
+
+.derivativeBox{
+    display:flex;
+    align-items:center;
+    font-size:18px;
+}
+
+.derivativeBox input{
+    width:60px;
+    text-align:center;
+}
+
+.limitBox{
+    display:flex;
+    align-items:center;
+}
+
+.limSymbol{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-bottom: 2px;
+}
+
+#showLimit {
+    color: green;
+}
+
+#showDerivative {
+    color: green;
+}
+
+.limSymbol h6{
+    margin:0;
+    line-height:1;
+    color: red;
+}
+
+.under{
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+
+.limitBox input{
+    width:60px;
+    text-align:center;
 }
