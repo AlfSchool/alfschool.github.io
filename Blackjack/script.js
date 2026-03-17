@@ -14,10 +14,11 @@ window.addEventListener('load', async () => {
     await drawCard(playerHand);
 
     const winnerLabel = document.querySelector('#winner');
+    let gameFinished = false;
 
     let drawCardButton = document.querySelector('#draw');
     drawCardButton.addEventListener('click', async () => {
-        if (isBusted(pHand)) {
+        if (gameFinished) {
             return;
         }
         await drawCard(playerHand);
@@ -28,6 +29,9 @@ window.addEventListener('load', async () => {
 
     const stayButton = document.querySelector('#stay');
     stayButton.addEventListener('click', async () => {
+        if (gameFinished) {
+            return;
+        }
         while (value(dHand) < 17) {
             await drawCard(dealerHand);
         }
@@ -35,16 +39,21 @@ window.addEventListener('load', async () => {
     });
 
     const restartButton = document.querySelector('#restart');
-    restartButton.addEventListener('click', () => {
-        restart();
+    restartButton.addEventListener('click', async () => {
+        await restart();
     });
 
-    function restart() {
+    async function restart() {
         pHand = [];
         dHand = [];
         winnerLabel.innerHTML = '';
         playerHand.innerHTML = '';
         dealerHand.innerHTML = '';
+        await drawCard(dealerHand);
+        await drawCard(dealerHand);
+        await drawCard(playerHand);
+        await drawCard(playerHand);        
+        gameFinished = true; 
     }
 
     async function drawCard(targetHand, HIDDEN = false) {
@@ -74,17 +83,27 @@ window.addEventListener('load', async () => {
     function value(hand) {
         let value = 0;
         let FACE_CARDS = ['KING', 'QUEEN', 'JACK'];
+
+        let aces = 0;
+
         for (let i = 0; i < hand.length; i++) {
             let cardValue = 0;
             if (FACE_CARDS.includes(hand[i])) {
                 cardValue = 10;
             } else if (hand[i] === 'ACE') {
-                cardValue = (value + 11 > 21) ? 1 : 11;
+                aces++;
+                cardValue = 11;
             } else {
                 cardValue = Number(hand[i]);
             }
             value += Number(cardValue);
         }
+
+        while (value > 21 && aces > 0) {
+            value -= 10;
+            aces--
+        }
+
         return value;
     }
 
@@ -93,12 +112,13 @@ window.addEventListener('load', async () => {
     }
 
     function determineWinner() {
+        gameFinished = true;
         if (isBusted(dHand)) {
-            winnerLabel.innerHTML = 'The dealer busted, the winner is the player';
+            winnerLabel.innerHTML = 'The dealer busted,<br> you win';
             return;    
         } 
         if (isBusted(pHand)) {
-            winnerLabel.innerHTML = 'The player busted, the winner is the dealer';
+            winnerLabel.innerHTML = 'The player busted,<br> you lost';
             return;
         }
         if (value(pHand) === value(dHand)) {
@@ -106,13 +126,14 @@ window.addEventListener('load', async () => {
             return;
         }
         if (value(pHand) > value(dHand)) {
-            winnerLabel.innerHTML = 'The winner is the player';
+            winnerLabel.innerHTML = 'You win';
             return;
         }
         if (value(pHand) < value(dHand)) {
-            winnerLabel.innerHTML = 'The winner is the dealer';
+            winnerLabel.innerHTML = 'You lost';
             return;
         }
+        gameFinished = false;
     }
 
     function updatePositionCards(targetHand) {
@@ -127,7 +148,7 @@ window.addEventListener('load', async () => {
         }
         for (let i = middle; i >= 0; i--) {
             let card = targetHand.children[i]; 
-            card.style.transform = `rotate(${angle}deg)`; // translateY(-${height}px)`;  
+            card.style.transform = `rotate(${angle}deg)`; 
             angle -= incrementAngle;
             height -= decreaseHeight;
         }
@@ -136,7 +157,7 @@ window.addEventListener('load', async () => {
         middle = Math.floor(length / 2);
         for (let i = middle; i < length; i++) {
             let card = targetHand.children[i];
-            card.style.transform = `rotate(${angle}deg)`; //translateY(-${height}px)`;
+            card.style.transform = `rotate(${angle}deg)`; 
             angle += incrementAngle;
             height -= decreaseHeight;
         }
