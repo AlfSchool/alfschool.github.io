@@ -1,4 +1,8 @@
-#hand {
+body {
+    margin: 0px;
+}
+
+.hand {
     display: flex;
     justify-content: space-between;
     margin-left: 220px;
@@ -7,6 +11,20 @@
 
 .card {
     margin-left: -220px;
+}
+
+#playerActions {
+    display: flex;
+    justify-content: center;
+}
+
+.crt {
+    min-height: 100vh;
+}
+
+#table {
+    display: flex;
+    flex-direction: column;
 }
 
 @property --w_raw {
