@@ -11,6 +11,8 @@ body {
 
 .card {
     margin-left: -220px;
+    transition: transform 0.2s ease;
+    cursor: pointer;
 }
 
 #playerActions {
@@ -23,12 +25,58 @@ body {
     min-height: 100vh;
 }
 
-#table {
+#hands {
     display: flex;
     flex-direction: column;
     gap: 50px; 
     width: 50%;
-    margin: 0 auto; /* center it horizontally */ 
+    margin: 0; 
+}
+
+#dealerHand {
+    width: 30%;
+    transform: translateX(80%);
+    perspective: 800px;
+}
+
+#playerHand {
+    perspective: 800px;
+}
+
+#table {
+    display: flex;
+    justify-content: center;
+}
+
+#deck {
+  position: absolute;
+  top: 40%;
+  left: 94%;
+}
+
+#remainingCount {
+    position: absolute;
+    top: 70%;
+    left: 82.5%;
+    font: 2rem terminal;
+}
+
+#playerWrapper {
+  gap: 12px;
+  padding: 8px;
+  padding-left: 250px;
+  padding-right: 250px;
+  background: linear-gradient(
+    to bottom,
+  /*
+  rgba(200, 40, 40, 0.2) 0%,
+  rgba(255, 30, 30, 0.1) 100%
+  */
+  rgba(0, 0, 0, 0.5) 0%,
+  rgba(0, 0, 0, 0.2) 100%
+  );
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.06);
 }
 
 #winner {
@@ -39,7 +87,6 @@ body {
     transform-origin: left top; 
     font-size: 3rem;        
     pointer-events: none;   
-    
 }
 
 @property --w_raw {

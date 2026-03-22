@@ -13,15 +13,25 @@
         <a class="back" href="../index.html"><--</a>
         <h1>BlackJack</h1>
         <div id="table">
-            <div class="hand" id="dealerHand"></div>
-            <div class="hand" id="playerHand"></div>
+            <div id="hands">
+                <div class="hand" id="dealerHand"></div>
+                <div id="playerWrapper">
+                    <div class="hand" id="playerHand"></div>
+                </div>
+            </div>
+            <div id="deckArea">
+                <div>
+                    <div id="deck"></div>
+                    <span id="remainingCount"></span>
+                </div>
+            </div>
         </div>
         <div id="playerActions">
-            <button id="draw" type="button">Draw card</button>
-            <button id="stay" type="button">Stay</button>
-            <button id="restart" type="button">Restart game</button>
+            <button id="draw" type="button">Hit</button>
+            <button id="stay" type="button">Stand</button>
+            <button id="new" type="button">New game</button>
         </div>
-        <h6 id="winner"></h6>
+        <span id="winner"></span>
     </div>
 </body>
 </html>
