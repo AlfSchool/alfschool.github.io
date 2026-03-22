@@ -12,6 +12,7 @@ body {
 .card {
     margin-left: -220px;
     transition: transform 0.2s ease;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -40,6 +41,7 @@ body {
 }
 
 #playerHand {
+    width: 60%;
     perspective: 800px;
 }
 
@@ -87,10 +89,4 @@ body {
     transform-origin: left top; 
     font-size: 3rem;        
     pointer-events: none;   
-}
-
-@property --w_raw {
-  syntax: '<length>';
-  inherits: true;
-  initial-value: 100vw;
 }

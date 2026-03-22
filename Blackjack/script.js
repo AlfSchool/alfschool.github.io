@@ -12,25 +12,29 @@ window.addEventListener('load', async () => {
             const seed = Number(card.randomOffset);
             const floatX = Math.cos(t * 0.8 + seed) * 2;
             const floatY = Math.sin(t + seed) * 2;
-            const rotZ = Math.sin(t + seed) * 1;
-            const rotX = Math.sin(t * 0.7 + seed) * 2; 
-            const rotY = Math.cos(t * 0.6 + seed) * 2;
-            const origTransform = card.origTransform;
+            let rotZ = Math.sin(t + seed) * 1;
+            let rotX = Math.sin(t * 0.7 + seed) * 2; 
+            let rotY = Math.cos(t * 0.6 + seed) * 2;
+            let scale = 1;
+            let lift = 0;
+
+            if (card.isHovered) {
+                card.style.zIndex = cards.length;
+                const mousePos = card.getMousePosition();
+                rotX += mousePos.y * 40;
+                rotY += -mousePos.x * 40;
+                lift = -10;
+                scale = 1.05;
+            } else {
+                card.style.zIndex = i;
+            }
             card.style.transform = `
-                ${origTransform}
-                translate(${floatX}px, ${floatY}px)
+                translate(${floatX}px, ${floatY + lift}px)
                 rotateX(${rotX}deg)
                 rotateY(${rotY}deg)
                 rotate(${cards[i].angle + rotZ}deg)
+                scale(${scale})
             `;
-            if (card.isHovered) {
-                card.style.transform += `scale(${1.05})`;
-                card.style.background = 'red';
-                const p = card.getMousePosition();
-                console.log(`x: ${p.x} y: ${p.y}` );
-            } else {
-                card.style.background = '';
-            }
         }
     }
     function loop(time) {
@@ -96,6 +100,8 @@ window.addEventListener('load', async () => {
         await drawCard(playerHand);
         if (isBusted(pHand)) {
             determineWinner();
+            drawCardButton.disabled = true;
+            stayButton.disabled = true;
         }
     });
 
@@ -172,8 +178,9 @@ window.addEventListener('load', async () => {
         });
         newCard.getMousePosition = function() {
             const rect = newCard.getBoundingClientRect();
-            const x = (this.mouseX - rect.left) / rect.width;
-            const y = (this.mouseY - rect.top) / rect.height;
+            const x = ((this.mouseX - rect.left) / rect.width) - 0.5;
+            const y = ((this.mouseY - rect.top) / rect.height) - 0.5;
+            console.log("x: " + x + "y: " + y);
             return {x, y};
         };
         hand.appendChild(newCard);

@@ -114,6 +114,8 @@ window.addEventListener('load', () => {
         ctx.moveTo(width/2, height/2);
         ctx.lineTo(width/2, height/2 + ts);
         ctx.moveTo(0, height/2 + ts);
+        ctx.stroke();
+        ctx.beginPath();
         ctx.strokeStyle = "green";
         ctx.moveTo(0, height / 2 + ts);
         ctx.lineTo(width, height / 2 + ts);
