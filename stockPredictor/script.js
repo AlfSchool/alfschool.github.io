@@ -1,10 +1,14 @@
 window.addEventListener('load', () => {
+    console.log("reload");
     const INITIAL_PRICE = 250;
     prices = [INITIAL_PRICE];
     variations = [];
 
     const input = document.querySelector('#input');
-    input.addEventListener('change', (e) => {
+    input.addEventListener('keydown', async (e) => {
+        if (e.key !== "Enter") {
+            return;
+        }
         increase = Number(e.target.value);
         if (isNaN(increase)) {
             return;
@@ -13,6 +17,15 @@ window.addEventListener('load', () => {
         const lastPrice = prices[prices.length - 1]; 
         prices.push(lastPrice + lastPrice * (increase / 100));
         drawTrend();
+        await fetch("http://localhost:3000/stocks", {
+            method: "POST",
+            body: JSON.stringify({
+                "variation": (increase / 100)
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        });
     });
 
     const canvas = document.querySelector('#canvas');
@@ -32,7 +45,7 @@ window.addEventListener('load', () => {
         }
         ctx.strokeStyle = "green";
         ctx.stroke();
-    }
+    }   
 
     const resultLabel = document.querySelector('#result');
     function showResult(itWillGoUp) {

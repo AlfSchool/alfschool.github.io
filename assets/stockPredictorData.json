@@ -1,0 +1,105 @@
+{
+  "stocks": [
+    {
+      "variation": 0.1,
+      "id": "4uQzrZjnecM"
+    },
+    {
+      "variation": -0.2,
+      "id": "zuQeSrgLGaI"
+    },
+    {
+      "variation": 0.6,
+      "id": "K_0ReMmKDDY"
+    },
+    {
+      "variation": -0.25,
+      "id": "nMoi9KM_x0Q"
+    },
+    {
+      "variation": 0.01,
+      "id": "RIfHX__8v34"
+    },
+    {
+      "variation": 0.1,
+      "id": "Kmzz5UOW5iI"
+    },
+    {
+      "variation": 0.11,
+      "id": "GOcUtIne5dQ"
+    },
+    {
+      "variation": 0.01,
+      "id": "V8sc-PxAAMY"
+    },
+    {
+      "variation": 0.1,
+      "id": "7nS4Mmx-Vgk"
+    },
+    {
+      "variation": 0.03,
+      "id": "QAXiVNJ8Ghs"
+    },
+    {
+      "variation": 0.32,
+      "id": "ZV7E-GtkCuo"
+    },
+    {
+      "variation": 3.24,
+      "id": "h4GNB2S7ANs"
+    },
+    {
+      "variation": 0.03,
+      "id": "NH2FUKYwTZs"
+    },
+    {
+      "variation": 0.02,
+      "id": "IE2h3VWhNtI"
+    },
+    {
+      "variation": 0.23,
+      "id": "UTkge_FBNKE"
+    },
+    {
+      "variation": 2.34,
+      "id": "dI0EG_thskc"
+    },
+    {
+      "variation": 23.42,
+      "id": "kEHDpMSBCKU"
+    },
+    {
+      "variation": 0.02,
+      "id": "Yz3xdlrjU6A"
+    },
+    {
+      "variation": 0.23,
+      "id": "PVexvfyFY1c"
+    },
+    {
+      "variation": 2.34,
+      "id": "gdy8wR1f3dc"
+    },
+    {
+      "variation": 0.02,
+      "id": "O9AaWHDY8WM"
+    },
+    {
+      "variation": 0.23,
+      "id": "u-hfGYiwqX0"
+    },
+    {
+      "variation": 2.34,
+      "id": "M7Xv9Hh_X3o"
+    },
+    {
+      "variation": 0.02,
+      "id": "KTOIOhrwl6E"
+    },
+    {
+      "variation": 0.06,
+      "id": "VWA4Od6P2nw"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
