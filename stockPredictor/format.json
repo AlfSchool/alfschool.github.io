@@ -1,0 +1,15 @@
+{
+    "data": [
+        {
+            "id": "either created by the server or by me, it just needs to be unique",
+            "position": "lab number with station number ex. LEN4-16",
+            "temperature": 21.5,
+            "humidity" : 34.3,
+            "luminosity": 3.3,
+            "timestamp": "2026-03-30 08:35:18"
+        },
+        {
+
+        }
+    ]
+}
