@@ -1,0 +1,39 @@
+@font-face {
+  src: url('/assets/Minecraft.ttf') format('truetype');
+  font-family: 'pixelated';
+}
+
+body {
+    margin: 0;
+}
+
+#main {
+    background-color: black;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#title {
+    color: yellow;
+    font: 4rem pixelated;
+    padding: 0;
+    margin: 0;
+}
+
+#titleSection {
+    animation: move 14s steps(100) infinite;
+    width: 100%;
+}
+
+#commandSection {
+    display: relative;
+    margin-top: auto;
+    width: 100%;
+}
+
+@keyframes move {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); } 
+}
+
