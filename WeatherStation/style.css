@@ -3,9 +3,15 @@
   font-family: 'pixelated';
 }
 
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
 body {
     margin: 0;
     overflow-x: hidden;
+}
+
+:root {
+    --accent-color: yellow;
 }
 
 #main {
@@ -16,7 +22,7 @@ body {
 }
 
 #title {
-    color: yellow;
+    color: var(--accent-color);
     font: 4rem pixelated;
     width: fit-content;
     padding: 0;
@@ -38,11 +44,27 @@ body {
 #stuff {
     flex-grow: 1;
     display: flex;
+    flex-direction: column;
 }
 
 #commandSection {
     margin-top: auto;
     width: 100%;
+    background-color: var(--accent-color);
+}
+
+#commandSection label, #commandSection input[type = "text"] {
+    font-family: "JetBrains Mono", monospace;
+}
+
+#ip {
+    border-radius: 0px;
+    border: 4px yellow solid;
+}
+
+
+#ip:focus {
+    border: 4px blue solid;
 }
 
 .scrollable-element {
