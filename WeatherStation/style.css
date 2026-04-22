@@ -45,6 +45,8 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    border: 2px yellow solid;
+    margin: 20px;
 }
 
 #commandSection {
@@ -62,12 +64,33 @@ body {
     border: 4px yellow solid;
 }
 
-
 #ip:focus {
-    border: 4px blue solid;
+    outline: none;
 }
 
 .scrollable-element {
   scrollbar-width: none;
 }
 
+#dataSection {
+    display: grid;
+    height: 100%;
+    grid-template-columns: 66.6% 33.4%;
+    grid-template-rows: 60% 40%;
+}
+
+#first {
+    background-color: gainsboro;
+}
+
+#second {
+    background-color: blue;
+}
+
+#third {
+    background-color: green;
+}
+
+#fourth {
+    background-color: red;
+}

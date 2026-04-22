@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "id": "a1f3c9e2-001",
+      "position": "LEN1-01",
+      "temperature": 22.4,
+      "humidity": 36.7,
+      "luminosity": 5.2,
+      "timestamp": "2026-03-30 08:35:18"
+    },
+    {
+      "id": "a1f3c9e2-002",
+      "position": "LEN1-02",
+      "temperature": 21.9,
+      "humidity": 35.1,
+      "luminosity": 4.8,
+      "timestamp": "2026-03-30 08:36:10"
+    },
+    {
+      "id": "a1f3c9e2-003",
+      "position": "LEN2-05",
+      "temperature": 23.2,
+      "humidity": 33.9,
+      "luminosity": 6.0,
+      "timestamp": "2026-03-30 08:37:02"
+    },
+    {
+      "id": "a1f3c9e2-004",
+      "position": "LEN3-12",
+      "temperature": 20.8,
+      "humidity": 38.4,
+      "luminosity": 2.9,
+      "timestamp": "2026-03-30 08:37:55"
+    },
+    {
+      "id": "a1f3c9e2-005",
+      "position": "LEN4-16",
+      "temperature": 21.5,
+      "humidity": 34.3,
+      "luminosity": 3.3,
+      "timestamp": "2026-03-30 08:38:40"
+    },
+    {
+      "id": "a1f3c9e2-006",
+      "position": "LEN5-03",
+      "temperature": 24.1,
+      "humidity": 32.8,
+      "luminosity": 7.1,
+      "timestamp": "2026-03-30 08:39:22"
+    }
+  ]
+}
