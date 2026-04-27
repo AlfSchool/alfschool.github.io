@@ -79,18 +79,18 @@ body {
     grid-template-rows: 60% 40%;
 }
 
-#first {
+#labs {
     background-color: gainsboro;
 }
 
-#second {
+#brightness {
     background-color: blue;
 }
 
-#third {
+#temperature {
     background-color: green;
 }
 
-#fourth {
+#humidity {
     background-color: red;
 }
