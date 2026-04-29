@@ -79,16 +79,12 @@ body {
     grid-template-rows: 60% 40%;
 }
 
-#labs {
+#map {
     background-color: gainsboro;
 }
 
 #brightness {
     background-color: blue;
-}
-
-#temperature {
-    background-color: green;
 }
 
 #humidity {
