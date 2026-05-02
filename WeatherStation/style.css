@@ -90,3 +90,7 @@ body {
 #humidity {
     background-color: red;
 }
+
+#temperature {
+    background-color: green;
+}
