@@ -134,7 +134,6 @@ window.addEventListener('load', () => {
             ctx.fillStyle = "white";
             ctx.fillRect(x - s/2, y - s/2, s, s);
         }
-
     }
 
     function updateHumidityGraph(station) {
@@ -151,10 +150,34 @@ window.addEventListener('load', () => {
         });
 
         const bars = [];
-        for (let i = 0; i < measurements.length; i++) {
+        const maxHumidity = Math.max(...(measurements.map(m => m.humidity)));
+        const lastMeasurementTime = Math.max(...(measurements.map(m => m.time)));
+        const firstMeasurementTime = Math.min(...(measurements.map(m => m.time)));
+        const measurementSpanTime = lastMeasurementTime - firstMeasurementTime;
+        for (let i = 1; i < measurements.length; i++) {
+            const measure = measurements[i];
             bars.push({
+                height: measure.humidity * (chart.height / maxHumidity),
+                width: (measure.time - measurements[i-1].time) * (chart.width / measurementSpanTime),
+                getRenderObject(x) {
+                    return [x, 
+                        chart.height - this.height,
+                        this.width,
+                        this.height
+                    ];
+                }
             });
         }
+
+        //rendering
+        const ctx = chart.getContext('2d');
+        ctx.fillStyle = "black";
+        let currentX = 0;
+        bars.forEach(b => { 
+            ctx.fillRect(...(b.getRenderObject(currentX)));
+            currentX += b.width;
+            console.log(currentX);
+        });
     }
 });
 
