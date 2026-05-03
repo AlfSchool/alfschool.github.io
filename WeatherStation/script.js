@@ -69,6 +69,20 @@ window.addEventListener('load', () => {
     function updateInterface(station) {
         updateHumidityGraph(station);
         updateTemperatureGraph(station);
+        updateLuminosityGraph(station);
+    }
+
+    function updateLuminosityGraph(station) {
+        const graph = document.querySelector('#brightnessGraph');
+        graph.width = graph.parentElement.clientWidth;
+        graph.height = graph.parentElement.clientHeight;
+        
+        //rendering
+        const ctx = graph.getContext('2d');
+        ctx.fillStyle = "red"
+        ctx.fillText("Hello World", 0, 40);
+        console.log(graph);
+
     }
 
     window.addEventListener('resize', () => {
@@ -176,7 +190,6 @@ window.addEventListener('load', () => {
         bars.forEach(b => { 
             ctx.fillRect(...(b.getRenderObject(currentX)));
             currentX += b.width;
-            console.log(currentX);
         });
     }
 });
